@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myshop_seller/constant/colorconstant.dart';
+import 'package:myshop_seller/modules/widgets/appBar.dart';
 import 'package:myshop_seller/modules/widgets/buttonclass.dart';
 import 'package:myshop_seller/modules/widgets/gettext.dart';
 
@@ -16,11 +17,12 @@ class _OrdersFulFillmentState extends State<OrdersFulFillment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: appBar(context, "Order Fulfillment", true),
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 17),
         child: Column(children: [
           SizedBox(
-            height: 80,
+            height: 40,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 23),

@@ -5,7 +5,7 @@ import 'package:myshop_seller/constant/colorconstant.dart';
 import 'package:myshop_seller/modules/notification/notificationscreen.dart';
 import 'package:myshop_seller/modules/settings/about.dart';
 import 'package:myshop_seller/modules/settings/changedesign.dart';
-import 'package:myshop_seller/modules/settings/choosedesign.dart';
+import 'package:myshop_seller/modules/signup/choosedesign.dart';
 import 'package:myshop_seller/modules/settings/marketing/marketingchoosebanner.dart';
 import 'package:myshop_seller/modules/settings/privacypolicy.dart';
 import 'package:myshop_seller/modules/settings/profilesetting.dart';

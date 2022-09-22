@@ -59,20 +59,28 @@ class _StatsState extends State<Stats> {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children:[
-              Center(
-                child: Card(
+              Align(
+                alignment: Alignment.centerRight,
+                child:
+                Card(
                   child: Container(
                     width: 173,
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton(
-                          icon: const ImageIcon(
+                          icon: selectedValue =="Last Month"?
+                          const ImageIcon(
+                            AssetImage(
+                              'assets/images/arrow_up.png',
+                            ),
+                            size: 22,
+                          ):const ImageIcon(
                             AssetImage(
                               'assets/images/arrow_down.png',
                             ),
                             size: 18,
                           ),
-                          hint: getText('Select Date', 16, kblackColor, FontWeight.w400,
+                          hint: getText('Select Date', 16, ksolidredColor, FontWeight.w400,
                               poppinsRegular),
                           style: const TextStyle(
                             color: ksolidredColor,
@@ -82,7 +90,7 @@ class _StatsState extends State<Stats> {
                             return DropdownMenuItem(
                                 value: e,
                                 child: getText(
-                                    e, 16, kblackColor, FontWeight.w500, poppinsMedium));
+                                    e, 16, ksolidredColor, FontWeight.w500, poppinsMedium));
                           }).toList(),
                           onChanged: (val) {
                             setState(() {

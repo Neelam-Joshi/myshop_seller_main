@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:myshop_seller/constant/colorconstant.dart';
 import 'package:myshop_seller/modules/dasboard/products/addproduct.dart';
+import 'package:myshop_seller/modules/dasboard/products/editproducts.dart';
 import 'package:myshop_seller/modules/widgets/appBar.dart';
 import 'package:myshop_seller/modules/widgets/buttonclass.dart';
 import 'package:myshop_seller/modules/widgets/gettext.dart';
@@ -23,14 +24,14 @@ class _ProductScreenState extends State<ProductScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height:16),
+            const SizedBox(height:16),
             searchAndFilterUI(),
-            SizedBox(height:13),
+            const SizedBox(height:13),
             Expanded(
               child:GridView.builder(
                  shrinkWrap: true,
-                  physics: ScrollPhysics(),
-                  gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                  physics: const ScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                        childAspectRatio: 0.75,
                        crossAxisSpacing: 5,
@@ -39,7 +40,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   itemBuilder: (BuildContext context,index){
                       return InkWell(
                         onTap: (){
-                          show();
+                          // show();
                         },
                         child: Card(
                           shape: RoundedRectangleBorder(
@@ -66,7 +67,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                     getText("₹65.40", 14, Colors.black, FontWeight.w500, poppinsMedium),
                                     InkWell(
                                       onTap: (){
-
+                                         Navigator.push(context, MaterialPageRoute(builder: (context)=>const EditProduct()));
                                       },
                                       child: const Text("Edit",
                                         style: TextStyle(
@@ -86,6 +87,23 @@ class _ProductScreenState extends State<ProductScreen> {
             )
           ]),
       ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(left:16,right:16),
+        child: Container(
+          margin: const EdgeInsets.only(bottom: 39),
+          height: 45,
+            alignment: Alignment.bottomCenter,
+          decoration:BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+          ),
+          child: ButtonClass(ksolidredColor, 45,
+              343, "Add Product",(){
+                Navigator.push(context, MaterialPageRoute(builder:(BuildContext context)=>AddProduct()));
+
+              }, Colors.white, false),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 
@@ -129,20 +147,20 @@ class _ProductScreenState extends State<ProductScreen> {
     );
   }
 
-  void show() {
-    showDialog(context: context,
-        builder: (BuildContext context)=>
-            Dialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5)
-              ),
-              alignment: Alignment.bottomCenter,
-              child: ButtonClass(ksolidredColor, 45,
-                  343, "Add Product",(){
-                     Navigator.push(context, MaterialPageRoute(builder:(BuildContext context)=>AddProduct()));
-
-                  }, Colors.white, false),
-            ),
-    );
-  }
+  // void show() {
+  //   showDialog(context: context,
+  //       builder: (BuildContext context)=>
+  //           Dialog(
+  //             shape: RoundedRectangleBorder(
+  //               borderRadius: BorderRadius.circular(5)
+  //             ),
+  //             alignment: Alignment.bottomCenter,
+  //             child: ButtonClass(ksolidredColor, 45,
+  //                 343, "Add Product",(){
+  //                    Navigator.push(context, MaterialPageRoute(builder:(BuildContext context)=>AddProduct()));
+  //
+  //                 }, Colors.white, false),
+  //           ),
+  //   );
+  // }
 }

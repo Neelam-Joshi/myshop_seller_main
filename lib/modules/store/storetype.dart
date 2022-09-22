@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:myshop_seller/constant/AppFonts.dart';
 import 'package:myshop_seller/constant/colorconstant.dart';
 import 'package:myshop_seller/modules/dasboard/DashboardPage.dart';
-import 'package:myshop_seller/modules/settings/choosedesign.dart';
+import 'package:myshop_seller/modules/signup/choosedesign.dart';
 import 'package:myshop_seller/modules/widgets/appBar.dart';
 import 'package:myshop_seller/modules/widgets/buttonclass.dart';
 import 'package:myshop_seller/modules/widgets/gettext.dart';
@@ -17,70 +17,120 @@ class StoreType extends StatefulWidget {
 
 class _StoreTypeState extends State<StoreType> {
 
-  int isSelected = -1;
-
+  List SelectedStoreList = [];
   List storeList = [
     {
       "image":"assets/images/store6.png",
       "title":"Groceries",
-      "des": "Category Description in case you don’t know what a fruit is"
-    },{
+      "des": "Category Description in case you don’t know what a fruit is",
+    },
+    {
       "image":"assets/images/store5.png",
       "title":"Fashion/ Clothing",
-      "des": "Category Description in case you don’t know what a fruit is Category Description in case you don’t know what a fruit is"
-    },{
+      "des": "Category Description in case you don’t know what a fruit is Category Description in case you don’t know what a fruit is",
+    },
+    {
       "image":"assets/images/store4.png",
       "title":"Electronics",
-      "des": "Category Description in case you don’t know what a fruit is"
-    },{
+      "des": "Category Description in case you don’t know what a fruit is",
+    },
+    {
       "image":"assets/images/store3.png",
       "title":"Pharmacy/ Medical",
-      "des": "Category Description in case you don’t know what a fruit is"
-    },{
+      "des": "Category Description in case you don’t know what a fruit is",
+    },
+    {
       "image":"assets/images/store4.png",
       "title":"Hardware/ Tools",
-      "des": "Category Description in case you don’t know what a fruit is"
-    },{
+      "des": "Category Description in case you don’t know what a fruit is",
+    },
+    {
       "image":"assets/images/store1.png",
       "title":"Bakery",
-      "des": "Category Description in case you don’t know what a fruit is"
+      "des": "Category Description in case you don’t know what a fruit is",
     },
   ];
+  List storeNewList = [];
 
 
-  void show(){
-    showDialog(
-      barrierDismissible: false,
-        context: context,
-        builder:( BuildContext context)=>
+  // void show(){
+  //   showDialog(
+  //     barrierDismissible: false,
+  //       context: context,
+  //       builder:( BuildContext context)=>
+  //
+  //           Dialog(
+  //             backgroundColor: Colors.transparent,
+  //             alignment: Alignment.bottomCenter,
+  //             child:
+  //             Padding(
+  //               padding: const EdgeInsets.only(left:20,right:15),
+  //               child: Row(
+  //                     //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //                     children: [
+  //                       Flexible(
+  //                         child: InkWell(
+  //                   onTap:(){
+  //                     Navigator.pop(context);
+  //                     // isSelected =false;
+  //                     setState(() {
+  //
+  //                     });
+  //                   },
+  //                   child: Container(
+  //                     width: 160,
+  //                     decoration: BoxDecoration(
+  //                           color:Colors.white,
+  //                           borderRadius: BorderRadius.circular(4),
+  //                           border: Border.all(
+  //                               color: ksolidredColor,
+  //                               width:0.5
+  //                           )
+  //                     ),
+  //                     height: 53,
+  //                     alignment: Alignment.center,
+  //                     child: getText("back", 16, ksolidredColor, FontWeight.w600, AppFonts.poppinsBold),
+  //                   ),
+  //                 ),
+  //                       ),
+  //                       const SizedBox(width: 10,),
+  //                       Flexible(
+  //                         child: InkWell(
+  //                           onTap:(){
+  //                             Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>const ChooseDesign()));
+  //                             setState(() {
+  //
+  //                             });
+  //                           },
+  //                           child: Container(
+  //                             width:160,
+  //                             decoration: BoxDecoration(
+  //                                 color:ksolidredColor,
+  //                                 borderRadius: BorderRadius.circular(4),
+  //                                 border: Border.all(
+  //                                     color: ksolidredColor,
+  //                                     width:0.5
+  //                                 )
+  //                             ),
+  //                             height: 53,
+  //                             alignment: Alignment.center,
+  //                             child: getText("continue", 16, Colors.white, FontWeight.w600, AppFonts.poppinsBold),
+  //                           ),
+  //                         ),
+  //                       ),
+  //
+  //
+  //
+  //                     ]),
+  //
+  //             ),
+  //           )
+  //   );
+  // }
 
-            Dialog(
-              backgroundColor: Colors.transparent,
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(left:30,right:25),
-                child: Container(
-                  height: 53,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                         ButtonClass(Colors.white, 53, 105, "back",() {
-                            Navigator.pop(context);
-                            isSelected=-1;
-                            setState(() {
-
-                            });
-                          },ksolidredColor,true),
-                         ButtonClass(ksolidredColor, 53, 105, "continue",() {
-                            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>const ChooseDesign()));
-                          },Colors.white,false),
-
-
-                      ]),
-                ),
-              ),
-            )
-    );
+  void initState(){
+    super.initState();
+    _getstoreTypes();
   }
   @override
   Widget build(BuildContext context) {
@@ -91,34 +141,35 @@ class _StoreTypeState extends State<StoreType> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height:80),
-              getText("Select your\nBusiness Cateogary", 24, kblackColor, FontWeight.w600, AppFonts.poppinsBold) , //semibold
-              SizedBox(height:35),
+              const SizedBox(height:80),
+              getText("Select your\nBusiness Category", 24, kblackColor, FontWeight.w600, AppFonts.poppinsBold) , //semibold
+              const SizedBox(height:25),
               ListView.separated(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 separatorBuilder: (BuildContext context,i){
-                  return SizedBox(height:8);
+                  return const SizedBox(height:8);
                 },
-                itemCount: storeList.length,
+                itemCount: storeNewList.length,
                 itemBuilder: (BuildContext context,index){
-                  var items = storeList[index];
+                  var items = storeNewList[index];
                   return InkWell(
                     onTap: (){
-                      if(isSelected!=index){
-                        isSelected = index;
+                      if(items.isSelected==true){
+                        items.isSelected = false;
+                        SelectedStoreList.remove(items.name);
                       }
-
-                      setState(() {
-
-                      });
-                      show();
-
-
+                      else{
+                        items.isSelected = true;
+                        SelectedStoreList.add(items.name);
+                        debugPrint('${SelectedStoreList[index]}');
+                      }
+                      setState(() {});
+                      // show();
                     },
                     child: Card(
                       elevation: 2,
-                      color:Color(0xffFFFFFF),
+                      color:const Color(0xffFFFFFF),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15),
 
@@ -126,10 +177,10 @@ class _StoreTypeState extends State<StoreType> {
                       child: Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
-                            border: isSelected==index?Border.all(
+                            border: items.isSelected==true?Border.all(
                               color: ksolidredColor
                             ):Border.all(
-                              color:Color(0xffffffff)
+                              color:const Color(0xffffffff)
                             )
                           ),
                           height: 96,
@@ -138,18 +189,18 @@ class _StoreTypeState extends State<StoreType> {
                               children: [
                                 ClipRRect(
                                     borderRadius :BorderRadius.circular(10),
-                                    child: Image.asset(items['image'])),
-                                SizedBox(width:41),
+                                    child: Image.asset(items.imagePath)),
+                                const SizedBox(width:41),
                                 Flexible(
                                   child: Padding(
                                     padding: const EdgeInsets.only(top: 8,bottom: 8),
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        getText(items["title"],
+                                        getText(items.name,
                                             16, kblackColor, FontWeight.w600, AppFonts.poppinsRegular),
-                                        SizedBox(width:5),
-                                        Text(items["des"],
+                                        const SizedBox(width:5),
+                                        Text(items.des,
                                           style: TextStyle(
                                               fontFamily: AppFonts.poppinsRegular,
                                               fontSize:14 ,
@@ -159,26 +210,101 @@ class _StoreTypeState extends State<StoreType> {
                                           ),
                                           maxLines: 2,
                                         ),
-
-                                      ],
-                                    ),
-                                  ),
-                                )
+                                      ]),
+                                  ),)
                               ])
                       ),
                     ),
                   );
                 },
               ),
-              SizedBox(height:44),
-
-
-
-            ],
-          ),
+              const SizedBox(height:44),
+            ]),
         ),
       ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(left:20,right:15),
+        child: Row(
+          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                child: InkWell(
+                  onTap:(){
+                    Navigator.pop(context);
+                    setState(() {
+
+                    });
+                  },
+                  child: Container(
+                    width: 160,
+                    decoration: BoxDecoration(
+                        color:Colors.white,
+                        borderRadius: BorderRadius.circular(4),
+                        border: Border.all(
+                            color: ksolidredColor,
+                            width:0.5
+                        )
+                    ),
+                    height: 53,
+                    alignment: Alignment.center,
+                    child: getText("Back", 16, ksolidredColor, FontWeight.w600, AppFonts.poppinsBold),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10,),
+              Flexible(
+                child: InkWell(
+                  onTap:(){
+                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>const ChooseDesign()));
+                    setState(() {
+
+                    });
+                  },
+                  child: Container(
+                    width:160,
+                    decoration: BoxDecoration(
+                        color:ksolidredColor,
+                        borderRadius: BorderRadius.circular(4),
+                        border: Border.all(
+                            color: ksolidredColor,
+                            width:0.5
+                        )
+                    ),
+                    height: 53,
+                    alignment: Alignment.center,
+                    child: getText("continue", 16, Colors.white, FontWeight.w600, AppFonts.poppinsBold),
+                  ),
+                ),
+              ),
+
+
+
+            ]),
+
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
     );
   }
+
+  void _getstoreTypes() {
+    debugPrint("called");
+      for(var i =0;i<storeList.length;i++){
+           var dictRes = storeList[i];
+           var obj = storemodal();
+           obj.name      = dictRes['title'];
+           obj.imagePath = dictRes['image'];
+           obj.des = dictRes['des'];
+
+           storeNewList.add(obj);
+      }
+  }
+
+
+}
+class storemodal {
+  String name    = "";
+  String imagePath = "";
+  String des   = "";
+  bool? isSelected ;
 }

@@ -68,8 +68,20 @@ class _AddFruitState extends State<AddFruit> {
 
   ];
 
-  int isSelectedCheck=-1;
-  List<bool>checkList = [];
+
+  List<bool>checkList =[];
+
+
+  void initState(){
+    checkList = List.generate(fruitsList.length, (index) => false);
+    debugPrint('checkList${checkList.length}');
+    for(var i =0; i<checkList.length;i++){
+      debugPrint('checkList${checkList[i]}');
+    }
+
+
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,12 +135,18 @@ class _AddFruitState extends State<AddFruit> {
                                 alignment: Alignment.topRight,
                                 child: customCheckBoxUI(
                                         (){
-                                          isSelectedCheck = index;
+                                          if(checkList[index]==false) {
+                                          checkList[index] =true;
+                                          debugPrint('one${checkList[index]}');
+                                           } else{
+                                            checkList[index]=false;
+                                            debugPrint(' two ${checkList[index]}');
+                                          }
                                           setState(() {
-                                            show();
+                                            // show();
                                           });
 
-                                        },index),
+                                        },checkList[index] ,index),
                               ),
                               getText("Fruit", 16, kblackColor, FontWeight.w600, poppinsRegular),
                               SizedBox(height: 10,),
@@ -140,6 +158,24 @@ class _AddFruitState extends State<AddFruit> {
               )
           )
         ]),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(left:16,right:16),
+        child: Container(
+          margin: const EdgeInsets.only(bottom: 39),
+          height: 45,
+          alignment: Alignment.bottomCenter,
+          decoration:BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: ButtonClass(ksolidredColor, 45,
+              343, "Save to Inventory",(){
+                showDialog(context: context, builder: (context)=>
+                    showmessage()
+                );
+              }, Colors.white, false),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 
@@ -171,7 +207,7 @@ class _AddFruitState extends State<AddFruit> {
     );
   }
 
-  Widget customCheckBoxUI(pressed,int index) {
+  Widget customCheckBoxUI(pressed,bool istrue,int index) {
     return InkWell(
       onTap: pressed,
       child: Container(
@@ -179,14 +215,14 @@ class _AddFruitState extends State<AddFruit> {
         width: 20,
         height: 20,
         decoration: BoxDecoration(
-          color: isSelectedCheck ==index?ksolidredColor:Colors.white,
+          color: istrue ==true?ksolidredColor:Colors.white,
           border: Border.all(
               width: 2,
-              color: isSelectedCheck ==index?ksolidredColor:Color(0xff545454)
+              color: istrue ==true?ksolidredColor:Color(0xff545454)
           ),
           borderRadius: BorderRadius.circular(5),
         ),
-        child: isSelectedCheck ==index ? Container(
+        child: istrue ==true? Container(
           width: 10, height: 10,
           child: Image.asset("assets/images/check.png", color: Colors.white,),
         ) : null,
@@ -194,42 +230,39 @@ class _AddFruitState extends State<AddFruit> {
     );
   }
 
-  void show(){
-    showDialog(
-        context: context,
-        builder: (BuildContext context)=>
-            Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5)
-              ),
-              alignment: Alignment.bottomCenter,
-              child: InkWell(
-                onTap: (){
-                  showmessage();
-                },
-                child: ButtonClass(ksolidredColor, 45,
-                    343, "Save to Inventory",(){
-
-                    },
-                    Colors.white, false),
-              ),
-            )
-    );
-  }
-  void showmessage(){
+  // void show(){
+  //   showDialog(
+  //       context: context,
+  //       builder: (BuildContext context)=>
+  //           Dialog(
+  //             shape: RoundedRectangleBorder(
+  //                 borderRadius: BorderRadius.circular(5)
+  //             ),
+  //             alignment: Alignment.bottomCenter,
+  //             child: InkWell(
+  //               onTap: (){
+  //                 showmessage();
+  //               },
+  //               child: ButtonClass(ksolidredColor, 45,
+  //                   343, "Save to Inventory",(){
+  //
+  //                   },
+  //                   Colors.white, false),
+  //             ),
+  //           )
+  //   );
+  // }
+ Widget showmessage(){
      print('clicked');
-    showDialog(
-        context: context, 
-        builder: (BuildContext context )=>
-            AlertDialog(
-              elevation: 2,
+     return AlertDialog(
+              elevation: 40,
               contentPadding: const EdgeInsets.fromLTRB(70, 65, 70, 65),
               alignment: Alignment.center,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5),
               ),
               content: getText("3 Products added!", 16, Colors.black, FontWeight.w500, poppinsMedium),
-            )
-    );
+            );
+
   }
 }
