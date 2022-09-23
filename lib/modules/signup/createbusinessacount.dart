@@ -18,14 +18,15 @@ class _CreateBusinessAccountState extends State<CreateBusinessAccount> {
     return Scaffold(
       body: SafeArea(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(
             height: 36,
           ),
           Container(
             padding: const EdgeInsets.only(left: 24, right: 13),
-            child: getText('What’s your Business Name', 24, kblackColor,
-                FontWeight.w600, poppinsSemiBold),
+            child: getText('What’s your Business \nName', 24, kblackColor,
+                FontWeight.w600, poppinsRegular),
           ),
           const SizedBox(
             height: 35,
@@ -76,7 +77,7 @@ class _CreateBusinessAccountState extends State<CreateBusinessAccount> {
       decoration: const InputDecoration(
           hintText: 'Enter here',
           hintStyle: TextStyle(
-              fontSize: 18,
+              fontSize: 16,
               fontWeight: FontWeight.w400,
               color: Color(0xffA8A6A7),
               fontFamily: poppinsRegular),
