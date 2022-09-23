@@ -259,7 +259,8 @@ class _ShopSettingsState extends State<ShopSettings> {
                       getText("Hours of Operation", 20, kblackColor, FontWeight.w500, poppinsMedium),
                       TimeUI(),
                       SizedBox(height: 15),
-                      ButtonClass(ksolidredColor, 45, 343, "Update",(){},Colors.white,false)
+                      ButtonClass(ksolidredColor, 45, 343, "Update",(){},Colors.white,false),
+                      SizedBox(height: 10),
                     ]),
                 ),
               ),

@@ -42,7 +42,7 @@ class _SupportScreenState extends State<SupportScreen> {
               ),
               isCallClicked
                   ? getText(
-                      "Call Now", 16, kblackColor, FontWeight.w400, poppinsSemiBold)
+                      "Call Now", 16, kblackColor, FontWeight.w400, poppinsRegular)
                   : isEmailClicked
                       ? getText("Email Now", 16, kblackColor, FontWeight.w400,
                   poppinsRegular)

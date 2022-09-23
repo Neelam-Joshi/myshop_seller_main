@@ -379,7 +379,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
               ),
               child: Container(
                 height: 125,
-                padding: const EdgeInsets.fromLTRB(24, 14, 27, 20),
+                padding: const EdgeInsets.fromLTRB(24, 14, 0, 20),
                 child:
 
                 Row(children: [

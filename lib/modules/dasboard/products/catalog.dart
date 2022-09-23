@@ -45,7 +45,7 @@ class _CatalogAddProductsState extends State<CatalogAddProducts> {
                                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>AddFruit()));
                                },
                                child: Container(
-                               padding: const EdgeInsets.only(left:12.5,top: 11,bottom: 13),
+                               padding: const EdgeInsets.only(left:12.5,top: 11,),
                                height: 125,
                                decoration: BoxDecoration(
                                  color: Colors.white,

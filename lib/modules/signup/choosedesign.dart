@@ -69,7 +69,7 @@ class _ChooseDesignState extends State<ChooseDesign> {
         ),
       ),
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(left:20,right:15),
+        padding: const EdgeInsets.only(left:20,right:15,bottom: 20),
         child: Row(
           //mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

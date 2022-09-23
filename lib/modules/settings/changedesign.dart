@@ -66,7 +66,8 @@ class _ChangeDesignState extends State<ChangeDesign> {
                 const SizedBox(height: 25),
                 ButtonClass(ksolidredColor, 45, 343, "Continue",
                         ()  {},
-                    Colors.white, false)
+                    Colors.white, false),
+                const SizedBox(height: 15),
               ],
             ),
           ),

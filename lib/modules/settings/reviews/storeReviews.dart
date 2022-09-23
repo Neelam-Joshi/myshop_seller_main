@@ -62,8 +62,8 @@ class _StoreReviewsState extends State<StoreReviews> {
                 itemBuilder: (BuildContext context,index){
                   var item = reviewList[index];
                   return Container(
-                    padding: const EdgeInsets.only(left:18,right:19,top:8,bottom:8),
-                    height: 125,
+                    padding: const EdgeInsets.only(left:18,right:19,top:8,),
+                    height: isVisible?170:125,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: const Color(0xffFFFFFF),

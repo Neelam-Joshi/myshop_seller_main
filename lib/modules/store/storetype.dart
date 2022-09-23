@@ -193,7 +193,7 @@ class _StoreTypeState extends State<StoreType> {
                                 const SizedBox(width:41),
                                 Flexible(
                                   child: Padding(
-                                    padding: const EdgeInsets.only(top: 8,bottom: 8),
+                                    padding: const EdgeInsets.only(top: 8),
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
@@ -223,7 +223,7 @@ class _StoreTypeState extends State<StoreType> {
         ),
       ),
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(left:20,right:15),
+        padding: const EdgeInsets.only(left:20,right:15,bottom:20),
         child: Row(
           //mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
