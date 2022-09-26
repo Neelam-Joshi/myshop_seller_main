@@ -539,7 +539,7 @@ class _ShopSettingsState extends State<ShopSettings> {
                             ),
                           ))),
                       DataCell(getText(
-                          "-", 16, kblackColor, FontWeight.w500, poppinsMedium)),
+                          "-", 16, Color(0xffA8A8A8), FontWeight.w500, poppinsMedium)),
                       DataCell(
                           Container(
                           padding: const EdgeInsets.only(left: 5),
