@@ -48,9 +48,9 @@ class _CreatePromotionState extends State<CreatePromotion> {
                     borderRadius: BorderRadius.circular(5),
                     boxShadow: [
                       BoxShadow(
-                        blurRadius: 16,
-                        offset: Offset(2,2),
-                        color: Colors.grey
+                        blurRadius: 6,
+                        offset: Offset(0,0),
+                        color: Colors.black12
                       )
                     ]
                   ),
@@ -66,23 +66,23 @@ class _CreatePromotionState extends State<CreatePromotion> {
                   ),
                 ),
               ),
-              SizedBox(height:30),
+              const SizedBox(height:30),
               getText("Shop Name", 14, kblackColor, FontWeight.w400, poppinsRegular,),
-              SizedBox(height:5),
+              const SizedBox(height:5),
               _buildTextField("ABC Store",shopNameController,TextInputType.text,"" ,false),
-              SizedBox(height:15),
+              const SizedBox(height:15),
               getText("Advertisement Date", 14, kblackColor, FontWeight.w400, poppinsRegular),
-              SizedBox(height:5),
+              const SizedBox(height:5),
               _buildTextField("4 May",adDateController,TextInputType.text,"assets/images/datecalender.png",true),
-              SizedBox(height:15),
+              const SizedBox(height:15),
               getText("Time", 14, kblackColor, FontWeight.w400, poppinsRegular),
-              SizedBox(height:5),
+              const SizedBox(height:5),
               _buildTextField("12:30",adDateController,TextInputType.text,"assets/images/time.png",true),
-              SizedBox(height:15),
+              const SizedBox(height:15),
               getText("Duration", 14, kblackColor, FontWeight.w400, poppinsRegular),
-              SizedBox(height:5),
+              const SizedBox(height:5),
               _buildTextField("12:30",adDateController,TextInputType.text,"assets/images/duration.png",true),
-              SizedBox(height:30),
+              const SizedBox(height:30),
               ButtonClass(ksolidredColor, 45, 343, "Post Advertisement", (){}, Colors.white, false)
 
             ],
@@ -119,7 +119,7 @@ class _CreatePromotionState extends State<CreatePromotion> {
             suffixIcon: suffixicon?
                 IconButton(
                   onPressed: (){},
-                  icon: Image.asset(imageURL),
+                  icon: Image.asset(imageURL,width:20,height: 20.02),
                 ):null
           ),
         ),

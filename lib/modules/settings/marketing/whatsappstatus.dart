@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:myshop_seller/constant/colorconstant.dart';
 import 'package:myshop_seller/modules/settings/marketing/page1.dart';
+import 'package:myshop_seller/modules/settings/marketing/page2.dart';
+import 'package:myshop_seller/modules/settings/marketing/page3.dart';
 import 'package:myshop_seller/modules/widgets/appBar.dart';
+import 'package:myshop_seller/modules/widgets/buttonclass.dart';
 import 'package:myshop_seller/modules/widgets/gettext.dart';
 
 class WhatsappStatus extends StatefulWidget {
@@ -18,8 +21,8 @@ class _WhatsappStatusState extends State<WhatsappStatus> {
   int _activePage = 0;
   final List<Widget> _Pages = [
     Page1(),
-    Page1(),
-    Page1()
+    Page2(),
+    Page3()
   ];
 
 
@@ -47,7 +50,6 @@ class _WhatsappStatusState extends State<WhatsappStatus> {
             child: Stack(
               children: [
                 PageView.builder(
-
                     physics: ScrollPhysics(),
                     controller: _pageViewController,
                     onPageChanged: (int index){
@@ -89,9 +91,40 @@ class _WhatsappStatusState extends State<WhatsappStatus> {
                                     ))
                       )))))
                    ]),
-          )
+          ),
+          SizedBox(height: 20.24,),
+          Padding(
+            padding: const EdgeInsets.only(left:16,right:16),
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 39),
+              height: 45,
+              alignment: Alignment.bottomCenter,
+              decoration:BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: ButtonClass(ksolidredColor, 45,
+                  343, "Share",(){
+                  }, Colors.white, false),
+            ),
+          ),
         ],
       ),
+      // floatingActionButton:
+      // Padding(
+      //   padding: const EdgeInsets.only(left:16,right:16),
+      //   child: Container(
+      //     margin: const EdgeInsets.only(bottom: 39),
+      //     height: 45,
+      //     alignment: Alignment.bottomCenter,
+      //     decoration:BoxDecoration(
+      //       borderRadius: BorderRadius.circular(5),
+      //     ),
+      //     child: ButtonClass(ksolidredColor, 45,
+      //         343, "Share",(){
+      //         }, Colors.white, false),
+      //   ),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

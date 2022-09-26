@@ -19,7 +19,7 @@ Widget ButtonClass(Color color,double height,double width,title, Function() onta
       ),
       height: height, width:width,
       alignment: Alignment.center,
-      child: getText(title, 16, colortext, FontWeight.w600, AppFonts.poppinsBold),
+      child: getText(title, 16, colortext, FontWeight.w600, poppinsSemiBold),
     ),
   );
 }

@@ -55,7 +55,8 @@ class _StoreReviewsState extends State<StoreReviews> {
           const SizedBox( height: 25.49,),
           Expanded(
             child: ListView.separated(
-                itemCount: reviewList.length,
+              padding: const EdgeInsets.only(left:13,right:19),
+              itemCount: reviewList.length,
                 separatorBuilder: (BuildContext context,i){
                   return const SizedBox(height:15);
                 },
@@ -68,6 +69,10 @@ class _StoreReviewsState extends State<StoreReviews> {
                     decoration: BoxDecoration(
                       color: const Color(0xffFFFFFF),
                       borderRadius: BorderRadius.circular(20),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black12, blurRadius: 10, offset: Offset(2, 2))
+                        ]
                     ),
                     child: Row(
                       children: [

@@ -53,80 +53,6 @@ class _StoreTypeState extends State<StoreType> {
   List storeNewList = [];
 
 
-  // void show(){
-  //   showDialog(
-  //     barrierDismissible: false,
-  //       context: context,
-  //       builder:( BuildContext context)=>
-  //
-  //           Dialog(
-  //             backgroundColor: Colors.transparent,
-  //             alignment: Alignment.bottomCenter,
-  //             child:
-  //             Padding(
-  //               padding: const EdgeInsets.only(left:20,right:15),
-  //               child: Row(
-  //                     //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-  //                     children: [
-  //                       Flexible(
-  //                         child: InkWell(
-  //                   onTap:(){
-  //                     Navigator.pop(context);
-  //                     // isSelected =false;
-  //                     setState(() {
-  //
-  //                     });
-  //                   },
-  //                   child: Container(
-  //                     width: 160,
-  //                     decoration: BoxDecoration(
-  //                           color:Colors.white,
-  //                           borderRadius: BorderRadius.circular(4),
-  //                           border: Border.all(
-  //                               color: ksolidredColor,
-  //                               width:0.5
-  //                           )
-  //                     ),
-  //                     height: 53,
-  //                     alignment: Alignment.center,
-  //                     child: getText("back", 16, ksolidredColor, FontWeight.w600, AppFonts.poppinsBold),
-  //                   ),
-  //                 ),
-  //                       ),
-  //                       const SizedBox(width: 10,),
-  //                       Flexible(
-  //                         child: InkWell(
-  //                           onTap:(){
-  //                             Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>const ChooseDesign()));
-  //                             setState(() {
-  //
-  //                             });
-  //                           },
-  //                           child: Container(
-  //                             width:160,
-  //                             decoration: BoxDecoration(
-  //                                 color:ksolidredColor,
-  //                                 borderRadius: BorderRadius.circular(4),
-  //                                 border: Border.all(
-  //                                     color: ksolidredColor,
-  //                                     width:0.5
-  //                                 )
-  //                             ),
-  //                             height: 53,
-  //                             alignment: Alignment.center,
-  //                             child: getText("continue", 16, Colors.white, FontWeight.w600, AppFonts.poppinsBold),
-  //                           ),
-  //                         ),
-  //                       ),
-  //
-  //
-  //
-  //                     ]),
-  //
-  //             ),
-  //           )
-  //   );
-  // }
 
   void initState(){
     super.initState();
@@ -135,95 +61,99 @@ class _StoreTypeState extends State<StoreType> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 18,right: 14),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height:80),
-              getText("Select your\nBusiness Category", 24, kblackColor, FontWeight.w600, AppFonts.poppinsBold) , //semibold
-              const SizedBox(height:25),
-              ListView.separated(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                separatorBuilder: (BuildContext context,i){
-                  return const SizedBox(height:8);
-                },
-                itemCount: storeNewList.length,
-                itemBuilder: (BuildContext context,index){
-                  var items = storeNewList[index];
-                  return InkWell(
-                    onTap: (){
-                      if(items.isSelected==true){
-                        items.isSelected = false;
-                        SelectedStoreList.remove(items.name);
-                      }
-                      else{
-                        items.isSelected = true;
-                        SelectedStoreList.add(items.name);
-                        debugPrint('${SelectedStoreList[index]}');
-                      }
-                      setState(() {});
-                      // show();
-                    },
-                    child: Card(
-                      elevation: 2,
-                      color:const Color(0xffFFFFFF),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-
-                      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16,right: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height:36),
+                Padding(
+                    padding: const EdgeInsets.only(left:4,right: 1),
+                    child: getText("Select your\nBusiness Category", 24, kblackColor, FontWeight.w600, AppFonts.poppinsBold)) , //semibold
+                const SizedBox(height:35),
+                ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  separatorBuilder: (BuildContext context,i){
+                    return const SizedBox(height:8);
+                  },
+                  itemCount: storeNewList.length,
+                  itemBuilder: (BuildContext context,index){
+                    var items = storeNewList[index];
+                    return InkWell(
+                      onTap: (){
+                        if(items.isSelected==true){
+                          items.isSelected = false;
+                          SelectedStoreList.remove(items.name);
+                        }
+                        else{
+                          items.isSelected = true;
+                          SelectedStoreList.add(items.name);
+                          debugPrint('${SelectedStoreList[index]}');
+                        }
+                        setState(() {});
+                        // show();
+                      },
                       child: Container(
-                          decoration: BoxDecoration(
+                            decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
-                            border: items.isSelected==true?Border.all(
-                              color: ksolidredColor
-                            ):Border.all(
-                              color:const Color(0xffffffff)
-                            )
-                          ),
-                          height: 96,
-                          padding: const EdgeInsets.fromLTRB(12, 8, 10, 8),
-                          child: Row(
-                              children: [
-                                ClipRRect(
-                                    borderRadius :BorderRadius.circular(10),
-                                    child: Image.asset(items.imagePath)),
-                                const SizedBox(width:41),
-                                Flexible(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 8),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        getText(items.name,
-                                            16, kblackColor, FontWeight.w600, AppFonts.poppinsRegular),
-                                        const SizedBox(width:5),
-                                        Text(items.des,
-                                          style: TextStyle(
-                                              fontFamily: AppFonts.poppinsRegular,
-                                              fontSize:14 ,
-                                              color: kblackColor,
-                                              fontWeight: FontWeight.w400,
-                                              overflow: TextOverflow.ellipsis
+                              border: items.isSelected==true?
+                              Border.all(
+                                color: ksolidredColor
+                              ):Border.all(
+                                color:const Color(0xffffffff)
+                              ),
+                                boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    blurRadius: 10,
+                                    offset: Offset(2, 2))],
+                              color:const Color(0xffFFFFFF),
+                            ),
+                            height: 96,
+                            padding: const EdgeInsets.fromLTRB(12, 8, 0, 8),
+                            child: Row(
+                                children: [
+                                  ClipRRect(
+                                      borderRadius :BorderRadius.circular(10),
+                                      child: Image.asset(items.imagePath,width: 80,height: 80,),),
+                                  const SizedBox(width:41),
+                                  Flexible(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 8),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          getText(items.name,
+                                              16, kblackColor, FontWeight.w600, AppFonts.poppinsRegular),
+                                          const SizedBox(width:5),
+                                          Text(items.des,
+                                            style: TextStyle(
+                                                fontFamily: AppFonts.poppinsRegular,
+                                                fontSize:14 ,
+                                                color: kblackColor,
+                                                fontWeight: FontWeight.w400,
+                                                overflow: TextOverflow.ellipsis
+                                            ),
+                                            maxLines: 2,
                                           ),
-                                          maxLines: 2,
-                                        ),
-                                      ]),
-                                  ),)
-                              ])
-                      ),
-                    ),
-                  );
-                },
-              ),
-              const SizedBox(height:44),
-            ]),
+                                        ]),
+                                    ),)
+                                ])
+                        ),
+
+                    );
+                  },
+                ),
+                const SizedBox(height:44),
+              ]),
+          ),
         ),
       ),
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(left:20,right:15,bottom:20),
+        padding: const EdgeInsets.only(left:24,right:21,bottom:30),
         child: Row(
           //mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -276,13 +206,10 @@ class _StoreTypeState extends State<StoreType> {
                   ),
                 ),
               ),
-
-
-
             ]),
-
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      resizeToAvoidBottomInset: false,
 
     );
   }

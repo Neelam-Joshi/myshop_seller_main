@@ -30,16 +30,13 @@ class _StatsState extends State<Stats> {
       body: SafeArea(
           child: Column(
         children: [
-          const SizedBox(
-            height: 10,
-          ),
+          const SizedBox(height: 10,),
           Align(
-              alignment: Alignment.center,
-              child: getText(
-                  'Stats', 24, kblackColor, FontWeight.w600, poppinsSemiBold)),
-          const SizedBox(
-            height: 41,
-          ),
+          alignment: Alignment.center,
+          child: getText('Stats', 24, kblackColor, FontWeight.w600, poppinsSemiBold)),
+          const SizedBox(height: 41,),
+          selectoption==1?searchUI():Container(),
+          selectoption==1?const SizedBox(height: 17,):Container(),
           customTabBar(),
           selectoption==0?
               Expanded(
@@ -196,28 +193,25 @@ class _StatsState extends State<Stats> {
   }
   Widget products(){
     return Expanded(
-      child: Padding(
-          padding: const EdgeInsets.only(left:16,right:16,),
-          child: ListView.separated(
+      child: ListView.separated(
+            padding:const EdgeInsets.only(left:16,right:16,),
             itemCount: 6,
             separatorBuilder: (BuildContext context,i){
               return SizedBox(height:8);
             },
             itemBuilder: (BuildContext context,index){
               return Container(
-                padding: const EdgeInsets.only(left:8,top:12,bottom:12),
+                height: 125,
+                padding: const EdgeInsets.only(left:8,top:12,),
                 decoration: BoxDecoration(
                     color: Color(0xffFFFFFF),
                     border: Border.all(
                       color: Color(0xffFFFFFF),
                     ),
                     borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
-                          blurRadius: 9,
-                          offset: Offset(0,4),
-                          color: Color(0xff7090B0)
-                      )
+                          color: Colors.black12, blurRadius: 10, offset: Offset(2, 2))
                     ]
                 ),
                 child: Row(
@@ -225,7 +219,7 @@ class _StatsState extends State<Stats> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Image.asset("assets/images/tatasalt.png",width:101,height:101),
-                      SizedBox(width:11),
+                      const SizedBox(width:11),
                       Padding(
                         padding:const EdgeInsets.only(top:5),
                         child: Column(
@@ -282,7 +276,6 @@ class _StatsState extends State<Stats> {
               );
             },
           )
-      ),
     );
 
   }
@@ -304,6 +297,44 @@ class _StatsState extends State<Stats> {
              )
            ],
       ),
+    );
+  }
+
+  Widget searchUI() {
+    return Padding(
+      padding: const EdgeInsets.only(left:16,right:16),
+      child: Container(
+          height: 40,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              border: Border.all(color: const Color(0xffBEBEBE), width: 1),
+              borderRadius: BorderRadius.circular(10)),
+          child: TextFormField(
+            style: const TextStyle(
+                fontSize: 14,
+                color: kblackColor,
+                fontWeight: FontWeight.w400,
+                fontFamily: 'Poppins'),
+            textAlignVertical: TextAlignVertical.center,
+            decoration: InputDecoration(
+                isDense: true,
+                hintText: 'Search',
+                hintStyle: const TextStyle(
+                    fontSize: 14,
+                    color: kLightTextColor,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: poppinsRegular),
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.only(top: 7, bottom: 8, left: 12),
+                  child: Image.asset(
+                    'assets/images/search.png',
+                    width: 22.05,
+                    height: 23.35,
+                    color: kIconColor,
+                  ),
+                ),
+                border: InputBorder.none),
+          )),
     );
   }
 

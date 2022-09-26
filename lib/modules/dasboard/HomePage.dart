@@ -4,13 +4,12 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myshop_seller/constant/AppColor.dart';
-import 'package:myshop_seller/constant/AppTextStyle.dart';
-import 'package:myshop_seller/constant/PageConstant.dart';
 import 'package:myshop_seller/constant/colorconstant.dart';
 import 'package:myshop_seller/modules/settings/longshopname.dart';
 import 'package:myshop_seller/modules/widgets/gettext.dart';
 
 import '../../constant/AppFonts.dart';
+import '../settings/marketing/choosebanner.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,6 +19,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool changeTabBar = false;
   bool status = false;
   @override
   Widget build(BuildContext context) {
@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                       top: 18.09, bottom: 18.84, left: 20, right: 10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Color(0xffFF8158),
+                    color: const Color(0xffFF8158),
                   ),
                   child: Column(
                     children: [
@@ -90,27 +90,73 @@ class _HomePageState extends State<HomePage> {
                           const SizedBox(
                             width: 15,
                           ),
-                          FlutterSwitch(
-                            width: 52.0,
-                            height: 24.0,
-                            toggleSize: 24.0,
-                            value: status,
-                            inactiveColor: kWhiteColor,
-                            activeTextColor: kWhiteColor,
-                            inactiveTextColor: kWhiteColor,
 
-                            activeColor: kWhiteColor,
-                            inactiveToggleColor: const Color(0xffC0C0C0),
-                            activeToggleColor: ksolidredColor,
-                            borderRadius: 18.0,
-                            // padding: 8.0,
-                            showOnOff: true,
-                            onToggle: (val) {
+                          InkWell(
+                            onTap: () {
+                              print('ol');
                               setState(() {
-                                status = val;
+                                if (changeTabBar == false) {
+                                  changeTabBar = true;
+                                  print(changeTabBar);
+                                } else {
+                                  changeTabBar = false;
+                                }
                               });
                             },
-                          ),
+                            child: Container(
+                              width: 47,
+                              height: 24,
+                              decoration: BoxDecoration(
+                                  color: kWhiteColor,
+                                  borderRadius: BorderRadius.circular(18)),
+                              alignment: changeTabBar == true
+                                  ? Alignment.centerRight
+                                  : Alignment.centerLeft,
+                              padding: const EdgeInsets.only(left: 1, right: 1),
+                              child: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    if (changeTabBar != false) {
+                                      changeTabBar = true;
+                                    } else {
+                                      changeTabBar = false;
+                                    }
+                                  });
+                                },
+                                child: Container(
+                                  height: 22,
+                                  width: 22,
+                                  decoration: BoxDecoration(
+                                      color: changeTabBar == true
+                                          ? ksolidredColor
+                                          : const Color(0xffC0C0C0),
+                                      borderRadius: BorderRadius.circular(100)),
+                                ),
+                              ),
+                            ),
+                          )
+
+                          // FlutterSwitch(
+                          //   width: 45.0,
+                          //   height: 24.0,
+                          //   toggleSize: 18.0,
+                          //   value: status,
+                          //   inactiveColor: kWhiteColor,
+                          //   activeTextColor: kWhiteColor,
+                          //   inactiveTextColor: kWhiteColor,
+
+                          //   activeColor: kWhiteColor,
+                          //   inactiveToggleColor: const Color(0xffC0C0C0),
+                          //   activeToggleColor: ksolidredColor,
+                          //   borderRadius: 18.0,
+                          //   // padding: 8.0,
+                          //   showOnOff: true,
+                          //   onToggle: (val) {
+                          //     setState(() {
+                          //       status = val;
+                          //     });
+                          //   },
+                          // ),
                         ],
                       )
                     ],
@@ -465,11 +511,15 @@ class _HomePageState extends State<HomePage> {
           ),
           Row(
             children: [
-              createShopUI('Run an Ad', 'Add your shop to our explore page'),
+              createShopUI('Run an Ad', 'Add your shop to our explore page',(){
+
+              }),
               const SizedBox(
                 width: 16,
               ),
-              createShopUI('Whatsapp', 'Share your store on Whatsapp'),
+              createShopUI('Whatsapp', 'Share your store on Whatsapp',(){
+
+              }),
             ],
           )
         ],
@@ -477,7 +527,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  createShopUI(String title, String sub) {
+  createShopUI(String title, String sub,Function ()ontap) {
     return Flexible(
       child: Container(
         padding: const EdgeInsets.only(bottom: 5),
@@ -510,26 +560,31 @@ class _HomePageState extends State<HomePage> {
             ),
             Container(
               padding: const EdgeInsets.only(left: 16),
-              child: Row(
-                children: [
-                  const Text(
-                    'Learn More',
-                    style: TextStyle(
-                        fontSize: 14,
-                        color: ksolidredColor,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: poppinsRegular,
-                        decoration: TextDecoration.underline),
-                  ),
-                  const SizedBox(
-                    width: 3,
-                  ),
-                  Image.asset(
-                    'assets/images/arrow_right.png',
-                    width: 15.4,
-                    height: 16,
-                  )
-                ],
+              child: InkWell(
+                onTap:(){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ChooseBanner()));
+                },
+                child: Row(
+                  children: [
+                    const Text(
+                      'Learn More',
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: ksolidredColor,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: poppinsRegular,
+                          decoration: TextDecoration.underline),
+                    ),
+                    const SizedBox(
+                      width: 3,
+                    ),
+                    Image.asset(
+                      'assets/images/arrow_right.png',
+                      width: 15.4,
+                      height: 16,
+                    )
+                  ],
+                ),
               ),
             )
           ],

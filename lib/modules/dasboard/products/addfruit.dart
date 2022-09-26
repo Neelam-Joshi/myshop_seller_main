@@ -65,22 +65,15 @@ class _AddFruitState extends State<AddFruit> {
       "title": "Orange",
       "des": "Knowen Names",
     },
-
   ];
 
-
   List<bool>checkList =[];
-
-
   void initState(){
     checkList = List.generate(fruitsList.length, (index) => false);
     debugPrint('checkList${checkList.length}');
     for(var i =0; i<checkList.length;i++){
       debugPrint('checkList${checkList[i]}');
     }
-
-
-
   }
   @override
   Widget build(BuildContext context) {
@@ -89,29 +82,24 @@ class _AddFruitState extends State<AddFruit> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(
-              child: getText("Fruit",
-                  16, kblackColor, FontWeight.w400, poppinsRegular)
-          ),
+          Center(child: getText("Fruit", 16, kblackColor, FontWeight.w400, poppinsRegular)),
           const SizedBox(height:38.87),
           Padding(
               padding: const EdgeInsets.only(left:16,right: 16),
-              child: _buildTextField("Search Fruit",)),
+              child: _buildTextField("Search Product",)),
           const SizedBox(height: 24.59,),
           Expanded(
               child: ListView.separated(
                 padding: const EdgeInsets.only(left:16,right: 16),
                 itemCount: fruitsList.length,
                 separatorBuilder: (BuildContext context,i){
-                  return const SizedBox(
-                      height:15
-                  );
+                  return const SizedBox(height:15);
                 },
                 itemBuilder: (BuildContext context, index){
                   var items = fruitsList[index];
                   return Container(
-                    padding: const EdgeInsets.only(left:12.5,top: 11,bottom: 13),
-                    height: 125,
+                    padding: const EdgeInsets.only(left:8,top: 7,bottom: 7),
+                    height: 94,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
@@ -124,34 +112,37 @@ class _AddFruitState extends State<AddFruit> {
                     ),
                     child: Row(
                       children: [
-                        Image.asset(items['image'],width: 101,height:101,) ,
-                        const SizedBox(width: 19.5,),
+                        Image.asset(items['image'],width: 80,height:80,) ,
+                        const SizedBox(width: 24,),
                         Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.only(right:16),
-                                alignment: Alignment.topRight,
-                                child: customCheckBoxUI(
-                                        (){
-                                          if(checkList[index]==false) {
-                                          checkList[index] =true;
-                                          debugPrint('one${checkList[index]}');
-                                           } else{
-                                            checkList[index]=false;
-                                            debugPrint(' two ${checkList[index]}');
-                                          }
-                                          setState(() {
-                                            // show();
-                                          });
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 3),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.only(right:16),
+                                  alignment: Alignment.topRight,
+                                  child: customCheckBoxUI(
+                                          (){
+                                            if(checkList[index]==false) {
+                                            checkList[index] =true;
+                                            debugPrint('one${checkList[index]}');
+                                             } else{
+                                              checkList[index]=false;
+                                              debugPrint(' two ${checkList[index]}');
+                                            }
+                                            setState(() {
+                                              // show();
+                                            });
 
-                                        },checkList[index] ,index),
-                              ),
-                              getText("Fruit", 16, kblackColor, FontWeight.w600, poppinsRegular),
-                              SizedBox(height: 10,),
-                              getText("275 Products", 14, kblackColor, FontWeight.w400, poppinsRegular),
-                            ]),
+                                          },checkList[index] ,index),
+                                ),
+                                getText("Fruit", 16, kblackColor, FontWeight.w600, poppinsSemiBold),
+                                SizedBox(height: 6,),
+                                getText("400 products", 14, kblackColor, FontWeight.w400, poppinsRegular),
+                              ]),
+                          ),
                         )],),
                   );
                 },

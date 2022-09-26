@@ -181,7 +181,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            searchUI(),
+            searchBar(),
             const SizedBox(height: 16),
             customTabBar(),
             selectoption == 0
@@ -250,8 +250,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
               width: 68,
               child: Column(
                 children: [
-                  getText('All', 14, kblackColor, FontWeight.w600,
-                      AppFonts.poppinsMedium),
+                  getText(
+                      'All', 14, kblackColor, FontWeight.w600, poppinsSemiBold),
                   selectoption == 0
                       ? const SizedBox(
                           width: 82,
@@ -276,8 +276,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
               width: 68,
               child: Column(
                 children: [
-                  getText('Open', 14, kblackColor, FontWeight.w500,
-                      AppFonts.poppinsMedium),
+                  getText('Open', 14, kblackColor, FontWeight.w600,
+                      poppinsSemiBold),
                   selectoption == 1
                       ? const SizedBox(
                           width: 82,
@@ -305,8 +305,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
               width: 80,
               child: Column(
                 children: [
-                  getText('Complete', 14, kblackColor, FontWeight.w500,
-                      AppFonts.poppinsMedium),
+                  getText('Complete', 14, kblackColor, FontWeight.w600,
+                      poppinsSemiBold),
                   selectoption == 2
                       ? const SizedBox(
                           width: 90,
@@ -334,8 +334,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
               width: 80,
               child: Column(
                 children: [
-                  getText('Processing', 14, kblackColor, FontWeight.w500,
-                      AppFonts.poppinsMedium),
+                  getText('Processing', 14, kblackColor, FontWeight.w600,
+                      poppinsSemiBold),
                   selectoption == 3
                       ? const SizedBox(
                           width: 96,
@@ -366,11 +366,15 @@ class _OrdersScreenState extends State<OrdersScreen> {
         itemBuilder: (BuildContext context, index) {
           var allItems = AllOrdersList[index];
           return InkWell(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context, )=>OrdersFulFillment()));
-              setState(() {
-
-              });
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (
+                    BuildContext context,
+                  ) =>
+                          OrdersFulFillment()));
+              setState(() {});
             },
             child: Card(
               elevation: 2,
@@ -378,64 +382,79 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Container(
-                height: 125,
-                padding: const EdgeInsets.fromLTRB(24, 14, 0, 20),
-                child:
-
-                Row(children: [
-                  Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    getText(allItems['CustomerName'], 16, kblackColor,
-                        FontWeight.w500, AppFonts.poppinsMedium),
-                    getText(allItems['OrderNo.'], 14, kblackColor,
-                        FontWeight.w500, AppFonts.poppinsMedium),
-                    getText(allItems['date'], 14, kLightTextColor,
-                        FontWeight.w400, AppFonts.poppinsRegular),
-                    getText(allItems['itemNo'], 14, kLightTextColor,
-                        FontWeight.w400, AppFonts.poppinsRegular),
-                  ]),
-                  const SizedBox(width: 15,),
+                // height: 125,
+                padding: const EdgeInsets.only(
+                    top: 14, left: 24, right: 13, bottom: 20),
+                child: Row(children: [
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(children: [
-                        getText("Filled on:", 16, kblackColor, FontWeight.w500,
-                            AppFonts.poppinsMedium),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        getText(allItems['filledOn'], 16, kblackColor,
-                            FontWeight.w500, AppFonts.poppinsMedium)
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        getText(allItems['CustomerName'], 16, kblackColor,
+                            FontWeight.w500, poppinsMedium),
+                        getText(allItems['OrderNo.'], 14, kblackColor,
+                            FontWeight.w500, poppinsMedium),
+                        getText(allItems['date'], 14, kLightTextColor,
+                            FontWeight.w400, poppinsRegular),
+                        getText(allItems['itemNo'], 14, kLightTextColor,
+                            FontWeight.w400, poppinsRegular),
                       ]),
-                      const SizedBox(height:12),
-                      Row(
-                        children: [
-                          Column(
-                            children: [
-                              Row(children: [
-                                Image.asset("assets/images/check.png",width:12.19,height:9.73),
-                                const SizedBox(width: 2,),
-                                getText("paid", 16, kLightTextColor, FontWeight.w500,
-                                    AppFonts.poppinsMedium),
-                              ],),
-                              const SizedBox(height:2,),
-                              getText("₹654.92", 16, kblackColor, FontWeight.w500,
-                                  AppFonts.poppinsMedium),
-                            ],
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  Flexible(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(children: [
+                          getText("Filled on:", 16, kblackColor,
+                              FontWeight.w600, poppinsMedium),
+                          const SizedBox(
+                            width: 2,
                           ),
-                          const SizedBox(width:20),
-                          Column(
-                            children: [
-                              getText("status", 16, kLightTextColor, FontWeight.w500,
-                                  AppFonts.poppinsMedium),
-                              const SizedBox(height:2),
-                              getText(allItems['Status'], 16, kblackColor,
-                                  FontWeight.w500, AppFonts.poppinsMedium)
-                            ],
-                          )
-
-                        ],
-                      )
-                  ],
+                          getText(allItems['filledOn'], 16, ksolidredColor,
+                              FontWeight.w600, poppinsMedium)
+                        ]),
+                        const SizedBox(height: 12),
+                        Row(
+                          children: [
+                            Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Image.asset("assets/images/check.png",
+                                        width: 12.19, height: 9.73),
+                                    const SizedBox(
+                                      width: 2,
+                                    ),
+                                    getText("paid", 16, kLightTextColor,
+                                        FontWeight.w400, poppinsRegular),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 2,
+                                ),
+                                getText("₹654.92", 14, kblackColor,
+                                    FontWeight.w400, poppinsRegular),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 1,
+                            ),
+                            const Spacer(),
+                            Column(
+                              // crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                getText("status", 14, kLightTextColor,
+                                    FontWeight.w400, poppinsRegular),
+                                const SizedBox(height: 2),
+                                getText(allItems['Status'], 14, kblackColor,
+                                    FontWeight.w400, poppinsRegular)
+                              ],
+                            )
+                          ],
+                        )
+                      ],
+                    ),
                   )
                 ]),
               ),
@@ -444,5 +463,41 @@ class _OrdersScreenState extends State<OrdersScreen> {
         },
       ),
     );
+  }
+
+  searchBar() {
+    return Container(
+        height: 40,
+        // width: 232,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            border: Border.all(color: kIconColor),
+            borderRadius: BorderRadius.circular(10)),
+        child: TextFormField(
+          style: const TextStyle(
+              fontSize: 14,
+              color: kblackColor,
+              fontWeight: FontWeight.w400,
+              fontFamily: poppinsRegular),
+          textAlignVertical: TextAlignVertical.center,
+          decoration: InputDecoration(
+              isDense: true,
+              hintText: 'Search',
+              hintStyle: const TextStyle(
+                  fontSize: 14,
+                  color: kLightTextColor,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: poppinsRegular),
+              prefixIcon: Padding(
+                padding: const EdgeInsets.only(top: 7, bottom: 8, left: 12),
+                child: Image.asset(
+                  'assets/images/search.png',
+                  width: 22.5,
+                  height: 23.35,
+                  color: kIconColor,
+                ),
+              ),
+              border: InputBorder.none),
+        ));
   }
 }

@@ -25,34 +25,34 @@ class _ProductScreenState extends State<ProductScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height:16),
-            searchAndFilterUI(),
+            searchUI(),
             const SizedBox(height:13),
             Expanded(
               child:GridView.builder(
+                 itemCount: 10,
                  shrinkWrap: true,
                   physics: const ScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                       childAspectRatio: 0.75,
-                       crossAxisSpacing: 5,
-                       mainAxisSpacing: 5,
+                        crossAxisCount: 2,
+                       childAspectRatio: 0.70,
+                       crossAxisSpacing: 15,
+                        mainAxisSpacing: 19,
                   ),
                   itemBuilder: (BuildContext context,index){
                       return InkWell(
-                        onTap: (){
-                          // show();
-                        },
+                        onTap: (){},
                         child: Card(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Container(
-                            padding: const EdgeInsets.only(left:10,right:9),
+                            padding: const EdgeInsets.only(left:10,right:9,top:5),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Image.asset("assets/images/apple.png",width: 145,height:145),
-                                getText("Product Name", 14, Colors.black, FontWeight.w400, poppinsBold) , //semibold
+                               // const SizedBox(height:5),
+                                getText("Product Name", 14, Colors.black, FontWeight.w600, poppinsSemiBold) , //semibold
                                 const Text("1 in stock",
                                 style: TextStyle(
                                     fontSize: 12,
@@ -71,10 +71,10 @@ class _ProductScreenState extends State<ProductScreen> {
                                       },
                                       child: const Text("Edit",
                                         style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
                                             color: ksolidredColor,
-                                            fontFamily: poppinsRegular,
+                                            fontFamily: poppinsMedium,
                                             decoration: TextDecoration.underline
                                         ),),
                                     ),
@@ -107,44 +107,38 @@ class _ProductScreenState extends State<ProductScreen> {
     );
   }
 
-  Widget searchAndFilterUI(){
-    return Row(
-      children: [
-         Container(
-           alignment: Alignment.center,
-           padding: const EdgeInsets.only(left:12),
-           width: 285,
-           height:40,
-           decoration: BoxDecoration(
-             color: Color(0xffffffff),
-             borderRadius: BorderRadius.circular(10),
-             border: Border.all(
-               color: kborderColor,
-               width: 1,
-             )
-           ),
-           child: TextField(
-             decoration: InputDecoration(
-               border: InputBorder.none,
-               hintText: "Search",
-               hintStyle: TextStyle(
-                 fontFamily: poppinsRegular,
-                 fontSize: 14,
-                 color: kLightTextColor,
-                 fontWeight: FontWeight.w400
-               ),
-               prefixIcon: IconButton(
-                 padding: const EdgeInsets.only(top:5.5),
-                 onPressed: (){},
-                 icon: Image.asset("assets/images/search.png",width: 22.05,height:23.35,),
-               )
-             ),
-           ),
-         ),
-         SizedBox(width:2),
-         Flexible(child: Image.asset("assets/images/slider.png",width:46.5,height:30))
-      ],
+  Widget searchUI(){
+    return Container(
+      alignment: Alignment.center,
+      padding: const EdgeInsets.only(left:12),
+      height:40,
+      decoration: BoxDecoration(
+        color: const Color(0xffffffff),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: kborderColor,
+          width: 1,
+        )
+      ),
+      child: TextField(
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: "Search",
+          hintStyle: const TextStyle(
+            fontFamily: poppinsRegular,
+            fontSize: 14,
+            color: kLightTextColor,
+            fontWeight: FontWeight.w400
+          ),
+          prefixIcon: IconButton(
+            padding: const EdgeInsets.only(top:5.5),
+            onPressed: (){},
+            icon: Image.asset("assets/images/search.png",width: 22.05,height:23.35,),
+          )
+        ),
+      ),
     );
+
   }
 
   // void show() {

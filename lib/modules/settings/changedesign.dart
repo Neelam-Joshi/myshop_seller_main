@@ -25,12 +25,12 @@ class _ChangeDesignState extends State<ChangeDesign> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 40,),
+                const SizedBox(height: 29.26,),
                 Padding(
                     padding: const EdgeInsets.only(left:6,right:4),
-                    child: getText("Your current design", 24, kblackColor, FontWeight.w600, poppinsRegular)
+                    child: getText("Your current design", 20, kblackColor, FontWeight.w500, poppinsMedium)
                 ),
-                const SizedBox(height: 24,),
+                const SizedBox(height: 15,),
                 Container(
                   height: 200.93,
                   decoration: BoxDecoration(
@@ -38,8 +38,8 @@ class _ChangeDesignState extends State<ChangeDesign> {
                       borderRadius: BorderRadius.circular(10)
                   ),
                 ),
-                const SizedBox(height: 37.05,),
-                getText("Choose new design", 20, kblackColor, FontWeight.w600, poppinsRegular),
+                const SizedBox(height: 30.07,),
+                getText("Choose new design", 20, kblackColor, FontWeight.w500, poppinsMedium),
                 const SizedBox(height: 15),
                 GridView.builder(
                     shrinkWrap: true,
@@ -47,7 +47,7 @@ class _ChangeDesignState extends State<ChangeDesign> {
                     itemCount: 16,
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        childAspectRatio: 1.08,
+                        childAspectRatio: 1.59,
                         crossAxisSpacing: 12,
                         mainAxisSpacing: 12
                     ) ,
@@ -58,7 +58,14 @@ class _ChangeDesignState extends State<ChangeDesign> {
                           height: 97,
                           decoration: BoxDecoration(
                               color:const Color(0xffC5C3FF),
-                              borderRadius: BorderRadius.circular(10)
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Color(0xff7090B02B),
+                                    offset: Offset(0, 0),
+                                    blurRadius: 4,
+                                    spreadRadius: 0)
+                              ]
                           ),
                         ),
                       );

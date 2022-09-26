@@ -50,69 +50,74 @@ class _ProductReviewsState extends State<ProductReviews> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(context, "Reviews", true),
-      body: Padding(
-        padding: const EdgeInsets.only(left:16,right:16),
-        child: Column(
-          children: [
-            Center(child: getText("Product Reviews", 16, kblackColor, FontWeight.w400, poppinsRegular),),
-            const SizedBox(height:25.46),
-            SearchUI("Search",productController,"assets/images/search.png"),
-            const SizedBox(height:15),
-            Expanded(
-              child: ListView.separated(
-                shrinkWrap: true,
-                physics: ScrollPhysics(),
-                itemCount: reviewList.length,
-                separatorBuilder: (BuildContext context,i){
-                  return const SizedBox(height:15);
-                },
-                itemBuilder: (BuildContext context,index){
-                  var item = reviewList[index];
-                  return InkWell(
-                    onTap:(){
+      body: Column(
+        children: [
+          Center(child: getText("Product Reviews", 16, kblackColor, FontWeight.w400, poppinsRegular),),
+          const SizedBox(height:25.46),
+          Padding(
+              padding: const EdgeInsets.only(left:16,right:16),
 
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.only(left:18,right:19,top:8,bottom:8),
-                      height: 125,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: const Color(0xffFFFFFF),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Row(
-                        children: [
-                          Image.asset(item['image'],width:80,height: 80,),
-                          const SizedBox(width: 15,),
-                          Flexible(
-                            child: Column(
-                                crossAxisAlignment:CrossAxisAlignment.start,
-                                children: [
-                                  getText(item['name'], 16, kblackColor, FontWeight.w600, poppinsRegular),
-                                  const SizedBox(width: 27,),
-                                  const Text("When I opened the sprite it was flat,and not good in test ",
-                                    style:   TextStyle(
-                                      fontFamily: poppinsRegular,
-                                      color: kLightTextColor,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                     maxLines: 2,
-                                  ),
-                                  const SizedBox(height: 8,),
-                                  Expanded(
-                                    child:  RatingUI(),)
-                                ]),
-                          )],
-                      ),
+              child: SearchUI("Search",productController,"assets/images/search.png")),
+          const SizedBox(height:15),
+          Expanded(
+            child: ListView.separated(
+              padding: const EdgeInsets.only(left:16,right:16),
+              shrinkWrap: true,
+              physics: ScrollPhysics(),
+              itemCount: reviewList.length,
+              separatorBuilder: (BuildContext context,i){
+                return const SizedBox(height:15);
+              },
+              itemBuilder: (BuildContext context,index){
+                var item = reviewList[index];
+                return InkWell(
+                  onTap:(){
+
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.only(left:18,right:19,top:8,bottom:8),
+                    height: 125,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: const Color(0xffFFFFFF),
+                      borderRadius: BorderRadius.circular(20),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Colors.black12, blurRadius: 10, offset: Offset(2, 2))
+                        ]
                     ),
-                  );
-                },
-              ),
-            )
-          ],
-        ),
+                    child: Row(
+                      children: [
+                        Image.asset(item['image'],width:80,height: 80,),
+                        const SizedBox(width: 15,),
+                        Flexible(
+                          child: Column(
+                              crossAxisAlignment:CrossAxisAlignment.start,
+                              children: [
+                                getText(item['name'], 16, kblackColor, FontWeight.w600, poppinsRegular),
+                                const SizedBox(width: 27,),
+                                const Text("When I opened the sprite it was flat,and not good in test ",
+                                  style:   TextStyle(
+                                    fontFamily: poppinsRegular,
+                                    color: kLightTextColor,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                   maxLines: 2,
+                                ),
+                                const SizedBox(height: 8,),
+                                Expanded(
+                                  child:  RatingUI(),)
+                              ]),
+                        )],
+                    ),
+                  ),
+                );
+              },
+            ),
+          )
+        ],
       ),
     );
   }
@@ -125,13 +130,10 @@ class _ProductReviewsState extends State<ProductReviews> {
       decoration: BoxDecoration(
         color: const Color(0xffFFFFFF),
         borderRadius: BorderRadius.circular(10),
-        boxShadow:const [
-          BoxShadow(
-            blurRadius:4,
-            offset: Offset(0,0),
-            color: Color(0xff7090B0)
-          )
-        ],
+          boxShadow: const [
+            BoxShadow(
+                color: Colors.black12, blurRadius: 10, offset: Offset(2, 2))
+          ]
       ),
       child: TextField(
 

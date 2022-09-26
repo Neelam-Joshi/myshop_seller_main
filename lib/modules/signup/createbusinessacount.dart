@@ -26,7 +26,7 @@ class _CreateBusinessAccountState extends State<CreateBusinessAccount> {
           Container(
             padding: const EdgeInsets.only(left: 24, right: 13),
             child: getText('What’s your Business \nName', 24, kblackColor,
-                FontWeight.w600, poppinsRegular),
+                FontWeight.w600, poppinsSemiBold),
           ),
           const SizedBox(
             height: 35,

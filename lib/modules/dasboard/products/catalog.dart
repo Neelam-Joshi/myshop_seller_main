@@ -18,56 +18,55 @@ class _CatalogAddProductsState extends State<CatalogAddProducts> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(context, "Catalog", true),
-      body: Padding(
-        padding: const EdgeInsets.only(left:16,right: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-              Center(
-                  child: getText("Add Product",
-                      16, kblackColor, FontWeight.w400, poppinsRegular)
-              ),
-              const SizedBox(height:38.87),
-              _buildTextField("Search Catalog",),
-              const SizedBox(height: 24.59,),
-              Expanded(
-                  child: ListView.separated(
-                      itemCount: 8,
-                      separatorBuilder: (BuildContext context,i){
-                             return const SizedBox(
-                               height:15
-                             );
-                      },
-                      itemBuilder: (BuildContext context, index){
-                           return
-                             InkWell(
-                               onTap: (){
-                                 Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>AddFruit()));
-                               },
-                               child: Container(
-                               padding: const EdgeInsets.only(left:12.5,top: 11,),
-                               height: 125,
-                               decoration: BoxDecoration(
-                                 color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
-                                   boxShadow:[
-                                     BoxShadow(
-                                       color: Colors.black12,
-                                       blurRadius: 10,
-                                       offset: Offset(2, 2)
-                                   )],
-                               ),
-                               child: Row(
-                                 children: [
-                                      Image.asset("assets/images/fruits.png",width: 101,height:101,) ,
-                                      const SizedBox(width: 19.5,),
-                                      Flexible(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+            Center(
+                child: getText("Add Product",
+                    16, kblackColor, FontWeight.w400, poppinsRegular)
+            ),
+            const SizedBox(height:38.87),
+            Padding(
+                padding: const EdgeInsets.only(left:16,right: 16),
+                child: _buildTextField("Search Catalog",)),
+            const SizedBox(height: 24.59,),
+            Expanded(
+                child: ListView.separated(
+                  padding: const EdgeInsets.only(left:16,right: 16,),
+                    itemCount: 8,
+                    separatorBuilder: (BuildContext context,i){
+                           return const SizedBox(height:15);
+                    },
+                    itemBuilder: (BuildContext context, index){
+                         return
+                           InkWell(
+                             onTap: (){
+                               Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>AddFruit()));
+                             },
+                             child: Container(
+                             padding: const EdgeInsets.only(left:12.5,top: 11,),
+                             height: 125,
+                             decoration: BoxDecoration(
+                               color: Colors.white,
+                               borderRadius: BorderRadius.circular(20),
+                               boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 10, offset: Offset(2, 2))
+                               ],
+                             ),
+                             child: Row(
+                               children: [
+                                    Padding(
+                                        padding:const EdgeInsets.only(bottom:13),
+                                        child: Image.asset("assets/images/fruits.png",width: 101,height:101,)) ,
+                                    const SizedBox(width: 19.5,),
+                                    Flexible(
+                                      child: Padding(
+                                        padding:const EdgeInsets.only(right:10),
                                         child: Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            getText("Fruit", 16, kblackColor, FontWeight.w600, poppinsRegular),
-                                            SizedBox(height: 5,),
-                                            const  Text(
+                                            getText("Fruit", 16, kblackColor, FontWeight.w600, poppinsSemiBold),
+                                            const SizedBox(height: 5,),
+                                            const Text(
                                               "Category Description in \ncase you don’t know what a fruit is",
                                               style:  TextStyle(
                                                 fontSize: 14,
@@ -78,18 +77,18 @@ class _CatalogAddProductsState extends State<CatalogAddProducts> {
                                               ),
                                               maxLines: 2,
                                             ),
-                                            SizedBox(height: 10,),
+                                            const SizedBox(height: 10,),
                                             getText("275 Products", 14, kblackColor, FontWeight.w400, poppinsRegular),
                                           ]),
-                                      )
-                                 ]),
-                           ),
-                             );
-                      },
-                  )
-              )
-          ]),
-      ),
+                                      ),
+                                    )
+                               ]),
+                         ),
+                           );
+                    },
+                )
+            )
+        ]),
     );
   }
 

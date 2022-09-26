@@ -17,6 +17,7 @@ class _MarketingChooseBannerState extends State<MarketingChooseBanner> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     // backgroundColor: Color(0xfff9f9f9),
       appBar: appBar(context, "Marketing", true),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -32,9 +33,15 @@ class _MarketingChooseBannerState extends State<MarketingChooseBanner> {
                 Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>CreatePromotion()));
               },
               child: Container(
-                padding: const EdgeInsets.only(left:17.07,right:17.07,bottom: 23.83),
+
+                padding: const EdgeInsets.only(left:17.07,right:17.07,bottom: 23.83,top:16.18),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(10),
+                    color: Color(0xffFFFFFF),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.black12, blurRadius: 10, offset: Offset(2, 2))
+                    ]
                 ),
                 height: 271.47,
                 child: Column(
@@ -67,9 +74,14 @@ class _MarketingChooseBannerState extends State<MarketingChooseBanner> {
                 Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>WhatsappStatus()));
               },
               child: Container(
-                padding: const EdgeInsets.only(left:17.07,right:17.07,bottom: 23.83),
+                padding: const EdgeInsets.only(left:17.07,right:17.07,bottom: 23.83,top:16.18),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(10),
+                    color: Color(0xffFFFFFF),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.black12, blurRadius: 10, offset: Offset(2, 2))
+                    ]
                 ),
                 height: 271.47,
                 child: Column(
@@ -79,7 +91,7 @@ class _MarketingChooseBannerState extends State<MarketingChooseBanner> {
                     SizedBox(height:15.86),
                     getText("Share on Whatsapp", 18, Colors.black, FontWeight.w500, poppinsMedium),
                     SizedBox(height:10),
-                    Text("Promote your store on \n Whatsapp.",
+                    Text("Promote your store on Whatsapp.",
                         style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
@@ -87,8 +99,8 @@ class _MarketingChooseBannerState extends State<MarketingChooseBanner> {
                             color: kblackColor,
                             overflow: TextOverflow.ellipsis
                         ),
-                      textAlign:TextAlign.center,
-                      maxLines: 2,
+                      //textAlign:TextAlign.center,
+                      //maxLines: 2,
                     )
 
                   ],

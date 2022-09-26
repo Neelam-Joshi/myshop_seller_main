@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Page1 extends StatefulWidget {
-  const Page1({Key? key}) : super(key: key);
+class Page2 extends StatefulWidget {
+  const Page2({Key? key}) : super(key: key);
 
   @override
-  State<Page1> createState() => _Page1State();
+  State<Page2> createState() => _Page2State();
 }
 
-class _Page1State extends State<Page1> {
+class _Page2State extends State<Page2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +15,7 @@ class _Page1State extends State<Page1> {
         margin: const EdgeInsets.only(bottom: 35),
         height: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.white,
+            color: Colors.white,
             boxShadow: [
               BoxShadow(
                   blurRadius: 10,
@@ -23,10 +23,10 @@ class _Page1State extends State<Page1> {
                   color: Colors.black12
               )
             ],
-          borderRadius: BorderRadius.circular(20)
+            borderRadius: BorderRadius.circular(20)
         ),
 
-        child: Image.asset("assets/images/statusone.png",width: 1158,height:1983.84),
+        child: Image.asset("assets/images/statustwo.png",width: 1158,height:1983.84),
       ),
     );
   }

@@ -22,6 +22,7 @@ class _ChooseBannerState extends State<ChooseBanner> {
            Center(
              child: getText("Choose Advertisement Banner", 16, kblackColor, FontWeight.w400, poppinsRegular),
            ),
+          SizedBox(height:25),
           Expanded(
             child: ListView.separated(
               padding: const EdgeInsets.only(left:16,right:16),
@@ -38,9 +39,9 @@ class _ChooseBannerState extends State<ChooseBanner> {
                         borderRadius: BorderRadius.circular(9),
                         boxShadow: [
                           BoxShadow(
-                            blurRadius: 16,
-                            offset: Offset(0,4),
-                            color: Colors.grey
+                            blurRadius: 10,
+                            offset: Offset(2,2),
+                            color: Colors.black12
                           )
                         ]
                       ),
@@ -52,14 +53,15 @@ class _ChooseBannerState extends State<ChooseBanner> {
                             fit:BoxFit.fill,
                               child: Image.asset("assets/images/sale1.png",width: 343,height: 115,)),
                           Flexible(
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding:const EdgeInsets.only(left:20,top: 5),
-                                    child: getText("Visit abc electronic store", 14, kblackColor, FontWeight.w400, poppinsRegular)),
-                                SizedBox(width: 12,),
-                                Image.asset("assets/images/arrow_right.png",color: kblackColor,width: 19.5 ,)
-                              ],
+                            child: Padding(
+                              padding:const EdgeInsets.only(left:20,top: 7),
+                              child: Row(
+                                children: [
+                                  getText("Visit abc electronic store", 14, kblackColor, FontWeight.w400, poppinsRegular),
+                                  SizedBox(width: 12,),
+                                  Image.asset("assets/images/arrow_right.png",color: kblackColor,width: 19.5 ,)
+                                ],
+                              ),
                             ),
                           )
 

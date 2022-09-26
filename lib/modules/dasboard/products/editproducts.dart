@@ -16,176 +16,192 @@ class EditProduct extends StatefulWidget {
 }
 
 class _EditProductState extends State<EditProduct> {
-
-  List containerWidget = [];
-  List imageCount = [];
   List addImageList = [];
+  List imageCount = [];
+  List<Widget> containerWidget = [];
+  File? image;
 
-  bool isSelectedCheck=false;
+  bool isSelectedCheck = false;
 
-  TextEditingController productcontroller =TextEditingController() ;
+  TextEditingController productcontroller = TextEditingController();
 
-  TextEditingController MRPcontroller=TextEditingController();
+  TextEditingController MRPcontroller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     containerWidget.add(
-      IconButton(
-        onPressed: () {
+      GestureDetector(
+        onTap: () {
           pickImage();
         },
-        icon: Container(
+        child: Container(
           height: 92,
           width: 92,
           alignment: Alignment.center,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color:Colors.white,
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 10,
-                    offset: Offset(3,3)
-                )
-              ]
+          decoration: BoxDecoration(boxShadow: const [
+            BoxShadow(
+                color: Colors.black12, blurRadius: 10, offset: Offset(3, 3))
+          ], borderRadius: BorderRadius.circular(10), color: kWhiteColor),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/images/plus.png',
+                height: 16,
+                width: 14.77,
+                color: kblackColor,
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              getText("Add Photo", 12, Colors.black, FontWeight.w400,
+                  poppinsRegular)
+            ],
           ),
-          padding: const EdgeInsets.only(top:15),
-          child:
-          Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset('assets/images/plus.png', height: 12, width: 12,color:kblackColor),
-                SizedBox(height: 5,),
-                getText("Add Photo", 12, Colors.black, FontWeight.w400,poppinsRegular )
-              ]),
         ),
-      ),);
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xfff9f9f9),
       appBar: appBar(context, "Products", true),
       body: Padding(
-        padding: const EdgeInsets.only(left:16,right:16),
+        padding: const EdgeInsets.only(left: 16, right: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: getText("Edit Products", 16, kblackColor, FontWeight.w400, poppinsRegular),
+              child: getText("Edit Products", 16, kblackColor, FontWeight.w400,
+                  poppinsRegular),
             ),
-            SizedBox(height:38.46),
+            const SizedBox(height: 31.46),
             buildPickImage(),
-            SizedBox(height:20),
-            Row(
-                children: [
-                  getText("Product Name", 14, kblackColor, FontWeight.w500, poppinsMedium),
-                  Spacer(),
-                  getText("Active", 14, kLightTextColor, FontWeight.w400, poppinsRegular),
-                  SizedBox(width:5),
-                  customCheckBoxUI(() {
-                    setState(() {
-                      if (isSelectedCheck) {
-                        isSelectedCheck = false;
-                      } else {
-                        isSelectedCheck = true;
-                      }
-                    });
-                  }),
-
-                ]),
-            SizedBox(height:5),
-            _buildTextField("Banana", productcontroller, TextInputType.text, false),
-            SizedBox(height:20),
-            getText("Number of items in stock", 14, kblackColor, FontWeight.w500, poppinsMedium),
-            SizedBox(height:5),
-            _buildTextField("20", productcontroller, TextInputType.text, false),
-            SizedBox(height:20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    getText("MRP", 14, kblackColor, FontWeight.w500, poppinsMedium),
-                    SizedBox(height:5),
-                    Container(
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.only(left:5),
-                      width: 155,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Color(0xffBEBEBE), width: 0.5),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: TextField(
-                        keyboardType: TextInputType.text,
-                        controller:MRPcontroller,
-                        decoration: InputDecoration(
-                            enabledBorder: InputBorder.none,
-                            focusedBorder: InputBorder.none,
-                            hintText: "MRP",
-                            hintStyle: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: poppinsRegular,
-                                color: kLightTextColor
-                            ),
-                            prefixIcon:
-                            IconButton(
-                              onPressed: () {},
-                              icon: Image.asset("assets/images/₹.png",width:8,height:16),
-                            )
-                        ),
-                      ),
-                    )
-
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    getText("Selling Price", 14, kblackColor, FontWeight.w500, poppinsMedium),
-                    SizedBox(height:5),
-                    Container(
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.only(left: 5),
-                      width: 155,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(color: Color(0xffBEBEBE), width: 0.5),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: TextField(
-                        keyboardType: TextInputType.text,
-                        controller:MRPcontroller,
-                        decoration: InputDecoration(
-                            enabledBorder: InputBorder.none,
-                            focusedBorder: InputBorder.none,
-                            hintText: "Selling Price",
-                            hintStyle: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: poppinsRegular,
-                                color: kLightTextColor
-                            ),
-                            prefixIcon:
-                            IconButton(
-                              onPressed: () {},
-                              icon: Image.asset("assets/images/₹.png",width:8,height:16),
-                            )
-                        ),
-                      ),
-                    )
-                  ]),
+            const SizedBox(height: 20),
+            Container(
+              padding: const EdgeInsets.only(right: 12),
+              child: Row(children: [
+                getText("Product Name", 14, kblackColor, FontWeight.w500,
+                    poppinsMedium),
+                const Spacer(),
+                getText("Active", 14, kLightTextColor, FontWeight.w500,
+                    poppinsMedium),
+                const SizedBox(width: 10),
+                const SizedBox(width: 5),
+                customCheckBoxUI(() {
+                  setState(() {
+                    if (isSelectedCheck) {
+                      isSelectedCheck = false;
+                    } else {
+                      isSelectedCheck = true;
+                    }
+                  });
+                }),
               ]),
-            SizedBox(height:30),
-            ButtonClass(ksolidredColor, 45, 343, " Update", (){
-
-            },Colors.white, false),
+            ),
+            const SizedBox(height: 5),
+            _buildTextField(
+                "Banana", productcontroller, TextInputType.text, false),
+            const SizedBox(height: 20),
+            getText("Number of items in stock", 14, kblackColor,
+                FontWeight.w500, poppinsMedium),
+            const SizedBox(height: 5),
+            _buildTextField("20", productcontroller, TextInputType.text, false),
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      getText("MRP", 14, kblackColor, FontWeight.w500,
+                          poppinsMedium),
+                      const SizedBox(height: 5),
+                      Container(
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.only(left: 5),
+                        width: 155,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                              color: const Color(0xffBEBEBE), width: 0.5),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: TextField(
+                          keyboardType: TextInputType.text,
+                          controller: MRPcontroller,
+                          decoration: InputDecoration(
+                              enabledBorder: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                              hintText: "MRP",
+                              hintStyle: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: poppinsRegular,
+                                  color: Color(0xffA8A8A8)),
+                              prefixIcon: IconButton(
+                                onPressed: () {},
+                                icon: Image.asset("assets/images/₹.png",
+                                    width: 8, height: 16),
+                              )),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  width: 19,
+                ),
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      getText("Selling Price", 14, kblackColor, FontWeight.w500,
+                          poppinsMedium),
+                      const SizedBox(height: 5),
+                      Container(
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.only(left: 5),
+                        width: 155,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border:
+                              Border.all(color: Color(0xffBEBEBE), width: 0.5),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: TextField(
+                          keyboardType: TextInputType.text,
+                          controller: MRPcontroller,
+                          decoration: InputDecoration(
+                              enabledBorder: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                              hintText: "Selling Price",
+                              hintStyle: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: poppinsRegular,
+                                  color: Color(0xffA8A8A8)),
+                              prefixIcon: IconButton(
+                                onPressed: () {},
+                                icon: Image.asset("assets/images/₹.png",
+                                    width: 8, height: 16),
+                              )),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 30),
+            ButtonClass(
+                ksolidredColor, 45, 343, " Update", () {}, Colors.white, false),
           ],
         ),
       ),
@@ -193,34 +209,31 @@ class _EditProductState extends State<EditProduct> {
   }
 
   Widget buildPickImage() {
-    return
-      Container(
-        width: MediaQuery
-            .of(context)
-            .size
-            .width,
-        child: GridView.builder(
-            itemCount: containerWidget.length,
-            shrinkWrap: true,
-            physics: const ScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              crossAxisSpacing: 7.7,
-              mainAxisSpacing: 10.3,
-            ),
-            itemBuilder: (context, index) {
-              return containerWidget[index];
-            }),
-      );
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: GridView.builder(
+          itemCount: containerWidget.length,
+          shrinkWrap: true,
+          physics: const ScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: 15,
+            mainAxisSpacing: 15,
+          ),
+          itemBuilder: (context, index) {
+            return containerWidget[index];
+          }),
+    );
   }
 
-  pickImage()async{
-    var image =  await ImagePicker().pickImage(source: ImageSource.camera,
+  pickImage() async {
+    final image = await ImagePicker().pickImage(
+      source: ImageSource.camera,
     );
-    if(image==null)return;
+    if (image == null) return;
     final imageTemporary = File(image.path);
     setState(() {
-      image = imageTemporary as XFile?;
+      this.image = imageTemporary;
       addImageList.add(imageTemporary);
       imageCount.add(imageTemporary);
     });
@@ -228,13 +241,19 @@ class _EditProductState extends State<EditProduct> {
       addImageList.clear();
       containerWidget.add(
         Container(
-          height: 74.7,
-          width: 74.7,
+          height: 92,
+          width: 92,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: Colors.black
+              boxShadow: const [],
+              borderRadius: BorderRadius.circular(10),
+              color: kWhiteColor),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.file(
+              element,
+              fit: BoxFit.cover,
+            ),
           ),
-          child: Image.file(element, fit: BoxFit.fitWidth,),
         ),
       );
     });
@@ -245,55 +264,59 @@ class _EditProductState extends State<EditProduct> {
       onTap: pressed,
       child: Container(
         alignment: Alignment.center,
-        width: 20,
-        height: 20,
+        width: 17,
+        height: 17,
         decoration: BoxDecoration(
-          color: isSelectedCheck?ksolidredColor:Colors.white,
+          color: isSelectedCheck ? ksolidredColor : Colors.white,
           border: Border.all(
-              color:isSelectedCheck?ksolidredColor:kcheckboxColor
-          ),
+              color: isSelectedCheck ? ksolidredColor : kcheckboxColor),
           borderRadius: BorderRadius.circular(5),
         ),
-        child: isSelectedCheck ? Container(
-          width: 10, height: 10,
-          child: Image.asset("assets/images/check.png", color: Colors.white,),
-        ) : null,
+        child: isSelectedCheck
+            ? Container(
+                width: 10,
+                height: 10,
+                child: Image.asset(
+                  "assets/images/check.png",
+                  color: Colors.white,
+                ),
+              )
+            : null,
       ),
     );
   }
 
   Widget _buildTextField(String hinttext, TextEditingController _controller,
       TextInputType keyboardtype, prefixicon) {
-    return
-      Container(
-        alignment: Alignment.center,
-        padding: const EdgeInsets.only(left: 10),
-        height: 40,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: Color(0xffBEBEBE), width: 0.5),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: TextField(
-          keyboardType: keyboardtype,
-          controller: _controller,
-          decoration: InputDecoration(
-              enabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              hintText: hinttext,
-              hintStyle: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  fontFamily: poppinsRegular,
-                  color: kLightTextColor
-              ),
-              prefixIcon: prefixicon ?
-              GestureDetector(
-                onTap: () {},
-                child: Image.asset("assets/images/₹.png",width:8,height:16),
-              ) : null
-          ),
-        ),
-      );
+    return Container(
+      alignment: Alignment.center,
+      padding: const EdgeInsets.only(left: 10),
+      height: 40,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: const Color(0xffBEBEBE), width: 0.5),
+        borderRadius: BorderRadius.circular(9),
+      ),
+      child: TextField(
+        keyboardType: keyboardtype,
+        controller: _controller,
+        decoration: InputDecoration(
+            enabledBorder: InputBorder.none,
+            focusedBorder: InputBorder.none,
+            hintText: hinttext,
+            hintStyle: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                fontFamily: poppinsRegular,
+                color: Color(0xffA8A8A8)),
+            prefixIcon: prefixicon
+                ? GestureDetector(
+                    onTap: () {},
+                    child: Image.asset("assets/images/₹.png",
+                        width: 8, height: 16),
+                  )
+                : null),
+      ),
+    );
   }
 }
